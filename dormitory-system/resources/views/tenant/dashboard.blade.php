@@ -20,14 +20,14 @@
         @endif
         <div class="d-flex">
             <a href="{{ route('tenant.profile.edit') }}" class="btn btn-sm btn-secondary me-2">Edit Profile</a>
-            <form method="POST" action="{{ route('logout') }}">
+            <form method="POST" action="{{ route('logout') }}" class="me-2">
                 @csrf
                 <button type="submit" class="btn btn-sm btn-danger">Logout</button>
             </form>
-            <form method="POST" action="{{ route('tenant.delete', $tenant) }}" onsubmit="return confirm('Are you sure you want to delete your account? This action cannot be undone.')">
+            <form method="POST" action="{{ route('tenant.delete', $tenant->id) }}" onsubmit="return confirm('Are you sure you want to delete your account? This action cannot be undone.')">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-sm btn-danger ms-2">Delete Account</button>
+                <button type="submit" class="btn btn-sm btn-danger">Delete Account</button>
             </form>
         </div>
     </div>

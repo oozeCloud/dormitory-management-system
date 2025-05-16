@@ -18,11 +18,25 @@ class DashboardController extends Controller
         return view('tenant.dashboard', compact('tenant', 'lease', 'room'));
     }
 
-    public function destroy(Tenant $tenant)
+    public function destroy($id)
     {
-        $room = Room::findOrFail($tenant->room_id);
-        $room->decrement('occupancy');
+        $tenant = Auth::guard('tenant')->user();
+
+        if ($tenant->id != $id) {
+            return redirect()->route('tenant.dashboard')->with('error', 'Unauthorized action.');
+        }
+
+        if ($tenant->room_id) {
+            $room = Room::find($tenant->room_id);
+            if ($room) {
+                $room->decrement('occupancy');
+            }
+        }
+
         $tenant->delete();
-        return view('auth.login')->with('success', 'Tenant deleted successfully.');
+
+        Auth::guard('tenant')->logout();
+
+        return redirect('/')->with('success', 'Your account has been deleted successfully.');
     }
 }
