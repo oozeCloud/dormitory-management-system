@@ -75,13 +75,32 @@ class LeaseController extends Controller
             return redirect()->route('tenant.dashboard')->with('error', 'No lease agreement found.');
         }
 
-        $lease->update([
-            'tenant_id' => $tenant->id,
-            'room_id' => $request->room_id,
-            'lease_term' => $request->lease_term,
-            'status' => 'pending',
-        ]);
+        if($lease->room_id != $request->room_id){
+            if ($tenant->room_id) {
+                $room = Room::find($tenant->room_id);
+                if ($room) {
+                    $room->decrement('occupancy');
+                }
+            }
 
-        return redirect()->route('tenant.dashboard')->with('success', 'Lease agreement updated and submitted for admin approval.');
+            $lease->update([
+                'tenant_id' => $tenant->id,
+                'room_id' => $request->room_id,
+                'lease_term' => $request->lease_term,
+                'status' => 'pending',
+            ]);
+
+            return redirect()->route('tenant.dashboard')->with('success', 'Lease agreement updated and submitted for admin approval.');
+        }else {
+            $lease->update([
+                'tenant_id' => $tenant->id,
+                'room_id' => $request->room_id,
+                'lease_term' => $request->lease_term,
+                'status' => 'pending',
+            ]);
+
+            return redirect()->route('tenant.dashboard')->with('success', 'Lease agreement updated and submitted for admin approval.');
+        }
+
     }
 }

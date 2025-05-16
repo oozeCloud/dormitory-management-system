@@ -19,7 +19,6 @@
         <label for="room" class="form-label">Select Room:</label>
         <div class="row">
             @foreach($rooms as $room)
-            @if($room->occupancy != $room->capacity)
             <div class="col-md-4 mb-3">
                 <div class="card h-100">
                     <img src="{{ asset($room->image) }}" class="card-img-top" alt="Room Image" style="height: 200px; object-fit: cover;">
@@ -37,7 +36,6 @@
                     </div>
                 </div>
             </div>
-            @endif
             @endforeach
         </div>
     </div>

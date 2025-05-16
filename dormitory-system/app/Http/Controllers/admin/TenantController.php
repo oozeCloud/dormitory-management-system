@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Room;
 use App\Models\Tenant;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class TenantController extends Controller
 {
@@ -44,6 +45,12 @@ class TenantController extends Controller
 
     public function destroy(Tenant $tenant)
     {
+        if ($tenant->room_id) {
+            $room = Room::find($tenant->room_id);
+            if ($room) {
+                $room->decrement('occupancy');
+            }
+        }
         $tenant->delete();
         return redirect()->route('admin.tenants.index')->with('success', 'Tenant deleted successfully.');
     }

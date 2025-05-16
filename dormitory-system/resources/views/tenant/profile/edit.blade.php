@@ -31,7 +31,7 @@
     </div>
     <div class="mb-3">
         <label>Password</label>
-        <input type="text" name="password" value="{{ $tenant->password }}" class="form-control">
+        <input type="text" name="password" class="form-control">
     </div>
     <button class="btn btn-primary">Update</button>
 </form>
