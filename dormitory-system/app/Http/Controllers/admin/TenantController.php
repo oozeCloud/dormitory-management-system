@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Room;
 use App\Models\Tenant;
+use App\Models\Message;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -50,6 +51,9 @@ class TenantController extends Controller
             if ($room) {
                 $room->decrement('occupancy');
             }
+        }
+        if ($tenant->id) {
+            Message::where('sender_id', $tenant->id)->delete();
         }
         $tenant->delete();
         return redirect()->route('admin.tenants.index')->with('success', 'Tenant deleted successfully.');

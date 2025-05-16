@@ -32,14 +32,28 @@
 
 <div class="row mt-4">
     <div class="col-md-12">
-        <div class="card bg-light p-3">
-            <h5>Actions</h5>
-            <a href="{{ route('admin.lease.applications') }}" class="btn btn-primary">View Applications</a><br>
-            <a href="{{ route('admin.message.tenants') }}" class="btn btn-primary">Message Tenants</a><br>
-            <a href="{{ route('admin.inbox') }}" class="btn btn-sm btn-primary">View Inbox</a><br>
-            <a href="{{ route('admin.rooms.index') }}" class="btn btn-sm btn-primary">Manage Rooms</a><br>
-            <a href="{{ route('admin.tenants.index') }}" class="btn btn-sm btn-primary">Manage Tenants</a><br>
-            <a href="{{ route('admin.account.edit') }}" class="btn btn-sm btn-primary">Edit Account</a><br>
+        <div class="card bg-light p-4">
+            <h5 class="mb-4">Actions</h5>
+            <div class="row g-3">
+                <div class="col-md-6 col-lg-4">
+                    <a href="{{ route('admin.lease.applications') }}" class="btn btn-primary w-100">View Applications</a>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <a href="{{ route('admin.message.tenants') }}" class="btn btn-primary w-100">Message Tenants</a>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <a href="{{ route('admin.inbox') }}" class="btn btn-primary w-100">View Inbox</a>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <a href="{{ route('admin.rooms.index') }}" class="btn btn-primary w-100">Manage Rooms</a>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <a href="{{ route('admin.tenants.index') }}" class="btn btn-primary w-100">Manage Tenants</a>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <a href="{{ route('admin.account.edit') }}" class="btn btn-primary w-100">Edit Account</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

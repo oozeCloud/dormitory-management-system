@@ -34,13 +34,25 @@
 </div>
 <div class="row mt-4">
     <div class="col-md-12">
-        <div class="card bg-light p-3">
-            <h5>Actions</h5><br>
-            <a href="{{ route('tenant.message.admin') }}" class="btn btn-sm btn-primary">Message Admin</a><br>
-            <a href="{{ route('tenant.inbox') }}" class="btn btn-sm btn-primary">View Inbox</a><br>
-            <a href="{{ route('tenant.payment.form') }}" class="btn btn-sm btn-primary">Make Payment</a><br>
-            <a href="{{ route('tenant.payment.history') }}" class="btn btn-sm btn-primary">View Payment History</a><br>
-            <a href="{{ route('tenant.lease.edit') }}" class="btn btn-sm btn-primary">Edit Lease Agreement</a>
+        <div class="card bg-light p-4">
+            <h5 class="mb-4">Actions</h5>
+            <div class="row g-3">
+                <div class="col-md-6 col-lg-4">
+                    <a href="{{ route('tenant.message.admin') }}" class="btn btn-primary w-100">Message Admin</a>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <a href="{{ route('tenant.inbox') }}" class="btn btn-primary w-100">View Inbox</a>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <a href="{{ route('tenant.payment.form') }}" class="btn btn-primary w-100">Make Payment</a>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <a href="{{ route('tenant.payment.history') }}" class="btn btn-primary w-100">View Payment History</a>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <a href="{{ route('tenant.lease.edit') }}" class="btn btn-primary w-100">Edit Lease Agreement</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

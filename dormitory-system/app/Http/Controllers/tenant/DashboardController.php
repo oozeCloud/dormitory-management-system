@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Tenant;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Room;
 use App\Models\Lease;
 use App\Models\Tenant;
+use App\Models\Message;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -31,6 +32,10 @@ class DashboardController extends Controller
             if ($room) {
                 $room->decrement('occupancy');
             }
+        }
+
+        if ($tenant->id) {
+            Message::where('sender_id', $tenant->id)->delete();
         }
 
         $tenant->delete();
