@@ -16,6 +16,9 @@ class Payment extends Model
         'overdue_months',
         'penalty_amount',
         'total_amount',
+        'payment_method',
+        'image',
+        'status',
         'payment_date',
     ];
 

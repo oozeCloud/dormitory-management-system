@@ -53,6 +53,9 @@
                 <div class="col-md-6 col-lg-4">
                     <a href="{{ route('admin.account.edit') }}" class="btn btn-primary w-100">Edit Account</a>
                 </div>
+                <div class="col-md-6 col-lg-4">
+                    <a href="{{ route('admin.payments.index') }}" class="btn btn-primary w-100">Review Payments</a>
+                </div>
             </div>
         </div>
     </div>

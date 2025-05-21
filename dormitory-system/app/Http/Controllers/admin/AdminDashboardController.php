@@ -14,7 +14,7 @@ class AdminDashboardController extends Controller
     {
         $roomCount = Room::count();
         $tenantCount = Tenant::count();
-        $totalIncome = Payment::sum('total_amount');
+        $totalIncome = Payment::where('status', 'approved')->sum('total_amount');
         $activeLeases = Lease::where('status', 'approved')->count();
 
         return view('admin.dashboard', compact('roomCount', 'tenantCount', 'totalIncome', 'activeLeases'));

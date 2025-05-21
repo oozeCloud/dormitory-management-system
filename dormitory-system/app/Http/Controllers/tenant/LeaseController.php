@@ -21,16 +21,27 @@ class LeaseController extends Controller
         $request->validate([
             'room_id' => 'required|',
             'lease_term' => 'required|integer|min:1',
+            'occupied_bedspace' => 'required|integer|min:1',
+            'room_type' => 'required',
         ]);
+
         $tenant = Auth::guard('tenant')->user();
+
         Lease::create([
             'tenant_id' => $tenant->id,
             'room_id' => $request->room_id,
             'lease_term' => $request->lease_term,
+            'occupied_bedspace' => $request->occupied_bedspace,
+            'room_type' => $request->room_type,
+            'months_paid' => 0,
             'status' => 'pending',
         ]);
 
-        return redirect()->route('tenant.dashboard')->with('success', 'Lease application submitted.');
+        if ($request->room_type == 'transient') {
+            return redirect()->route('tenant.dashboard')->with('success', 'Lease application submitted.');
+        }else {
+            return redirect()->route('tenant.payment.form')->with('success', 'Lease application submitted.');
+        }
     }
 
     public function update(Request $request)
@@ -66,6 +77,8 @@ class LeaseController extends Controller
         $request->validate([
             'room_id' => 'required|',
             'lease_term' => 'required|integer|min:1',
+            'occupied_bedspace' => 'required|integer|min:1',
+            'room_type' => 'required'
         ]);
 
         $tenant = Auth::guard('tenant')->user();
@@ -87,6 +100,9 @@ class LeaseController extends Controller
                 'tenant_id' => $tenant->id,
                 'room_id' => $request->room_id,
                 'lease_term' => $request->lease_term,
+                'occupied_bedspace' => $request->occupied_bedspace,
+                'room_type' => $request->room_type,
+                'months_paid' => 0,
                 'status' => 'pending',
             ]);
 
@@ -96,6 +112,9 @@ class LeaseController extends Controller
                 'tenant_id' => $tenant->id,
                 'room_id' => $request->room_id,
                 'lease_term' => $request->lease_term,
+                'occupied_bedspace' => $request->occupied_bedspace,
+                'room_type' => $request->room_type,
+                'months_paid' => 0,
                 'status' => 'pending',
             ]);
 

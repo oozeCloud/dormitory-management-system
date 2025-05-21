@@ -7,8 +7,35 @@
 <div class="alert alert-success">{{ session('success') }}</div>
 @endif
 
+@if($errors->any())
+<div class="alert alert-danger">
+    <ul class="mb-0">
+        @foreach($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
 <form method="POST" action="{{ route('tenant.lease.submit') }}">
     @csrf
+    <div class="mb-4">
+        <label for="lease_term" class="form-label">Lease Term (months)</label>
+        <input type="number" name="lease_term" min="1" class="form-control" required>
+    </div>
+
+    <div class="mb-4">
+        <label for="occupied_bedspace" class="form-label">Bedspace to occupy</label>
+        <input type="number" name="occupied_bedspace" min="1" class="form-control" required>
+    </div>
+
+    <div class="mb-4">
+        <label for="room_type" class="form-label">Type of room (boarding requires downpayment)</label>
+        <select name="room_type" id="" class="form-control" required>
+            <option value="boarding" selected>boarding</option>
+            <option value="transient">transient</option>
+        </select>
+    </div>
 
     <div class="mb-4">
         <label for="room" class="form-label">Select Room:</label>
@@ -32,16 +59,14 @@
                     </div>
                 </div>
             </div>
+            @else
+            No available rooms!
             @endif
             @endforeach
         </div>
     </div>
 
-    <div class="mb-4">
-        <label for="lease_term" class="form-label">Lease Term (months)</label>
-        <input type="number" name="lease_term" min="1" class="form-control" required>
-    </div>
-
     <button class="btn btn-primary">Submit Application</button>
 </form>
+<a href="{{ route('tenant.register.show') }}" class="btn btn-secondary mt-3">Back</a>
 @endsection

@@ -69,5 +69,8 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
 
     Route::get('account/edit', [AdminAccountController::class, 'edit'])->name('admin.account.edit');
     Route::post('account/update', [AdminAccountController::class, 'update'])->name('admin.account.update');
+
+    Route::get('/payments', [PaymentController::class, 'index'])->name('admin.payments.index');
+    Route::post('/payments/{id}/status', [PaymentController::class, 'updateStatus'])->name('admin.payments.updateStatus');
     
 });

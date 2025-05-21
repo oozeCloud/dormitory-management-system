@@ -16,17 +16,12 @@
     </ul>
 </div>
 @endif
-<div class="card mb-4">
-    <div class="card-body">
-        <p>Room's monthly Rent: ₱{{ number_format($monthlyRent, 2) }}</p>
-        <p>Occupied bedspace: {{ $lease->occupied_bedspace }}</p>
-        <p>Monthly Rent to pay: {{ $toPay }}</p>
-        <p>Overdue Months: {{ $overdueMonths }}</p>
-        <p>Penalty Amount: ₱{{ number_format($penalty, 2) }}</p>
-        <p>Months left unpaid: {{ $monthsLeft }}</p>
-    </div>
-</div>
 
+<p>Monthly Rent: ₱{{ number_format($monthlyRent, 2) }}</p>
+<p>Occupied bedspace: {{ $lease->occupied_bedspace }}</p>
+<p>Overdue Months: {{ $overdueMonths }}</p>
+<p>Penalty Amount: ₱{{ number_format($penalty, 2) }}</p>
+<p>Months left unpaid: {{ $monthsLeft }}</p>
 
 <form method="POST" action="{{ route('tenant.payment.process') }}" enctype="multipart/form-data">
     @csrf
@@ -45,5 +40,5 @@
     </div><br>
     <button type="submit" class="btn btn-primary">Submit request</button>
 </form>
-<a href="{{ route('tenant.dashboard') }}" class="btn btn-secondary mt-3">Back</a>
+<!-- <a href="{{ route('tenant.dashboard') }}" class="btn btn-secondary mt-3">go to dashboard</a> -->
 @endsection

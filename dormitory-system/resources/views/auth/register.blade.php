@@ -2,7 +2,15 @@
 
 @section('content')
 <h2>Tenant Registration</h2>
-
+@if($errors->any())
+<div class="alert alert-danger">
+    <ul class="mb-0">
+        @foreach($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 <form method="post" action="{{ route('tenant.register') }}">
     @csrf
     <div class="row">
@@ -37,4 +45,5 @@
     </div>
     <button class="btn btn-success">Register</button>
 </form>
+<a href="{{ route('tenant.login.show') }}" class="btn btn-secondary mt-3">Back to login</a>
 @endsection

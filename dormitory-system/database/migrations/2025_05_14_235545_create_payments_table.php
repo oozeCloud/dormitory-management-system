@@ -19,6 +19,9 @@ return new class extends Migration
             $table->integer('overdue_months')->default(0)->nullable();
             $table->decimal('penalty_amount', 8, 2)->default(0);
             $table->decimal('total_amount', 8, 2);
+            $table->string('payment_method');
+            $table->string('image');
+            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->date('payment_date');
             $table->timestamps();
 

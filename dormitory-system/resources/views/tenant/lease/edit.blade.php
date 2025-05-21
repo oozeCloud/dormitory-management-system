@@ -16,6 +16,19 @@
     </div>
 
     <div class="mb-4">
+        <label for="occupied_bedspace" class="form-label">Bedspace to occupy</label>
+        <input type="number" name="occupied_bedspace" min="1" value="{{ $lease->occupied_bedspace }}" class="form-control" required>
+    </div>
+    
+    <div class="mb-4">
+        <label for="room_type" class="form-label">Type of room (boarding requires downpayment)</label>
+        <select name="room_type" id="" class="form-control" required>
+            <option value="boarding" selected>boarding</option>
+            <option value="transient">transient</option>
+        </select>
+    </div>
+
+    <div class="mb-4">
         <label for="room" class="form-label">Select Room:</label>
         <div class="row">
             @foreach($rooms as $room)

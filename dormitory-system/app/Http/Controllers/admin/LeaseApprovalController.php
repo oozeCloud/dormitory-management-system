@@ -12,7 +12,7 @@ class LeaseApprovalController extends Controller
 {
     public function index()
     {
-        $applications = Lease::where('status', 'pending')->with('tenant', 'room')->get();
+        $applications = Lease::with('tenant', 'room')->get();
         return view('admin.applications.index', compact('applications'));
     }
 
@@ -32,7 +32,8 @@ class LeaseApprovalController extends Controller
         $lease->status = 'approved';
         $lease->save();
 
-        $room->increment('occupancy');
+        $room->occupancy = $room->occupancy + $lease->occupied_bedspace;
+        $room->save();
 
         $tenant = Tenant::findOrFail($lease->tenant_id);
         $tenant->room_id = $lease->room_id;

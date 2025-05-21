@@ -2,7 +2,9 @@
 
 @section('content')
 <h3>Tenant Dashboard</h3>
-
+@if(session('success'))
+<div class="alert alert-success">{{ session('success') }}</div>
+@endif
 <div class="card mb-4">
     <div class="card-body">
         <h5>Welcome, {{ $tenant->first_name }} {{ $tenant->last_name }}</h5>
@@ -43,9 +45,11 @@
                 <div class="col-md-6 col-lg-4">
                     <a href="{{ route('tenant.inbox') }}" class="btn btn-primary w-100">View Inbox</a>
                 </div>
+                @if($lease->status == 'approved')
                 <div class="col-md-6 col-lg-4">
                     <a href="{{ route('tenant.payment.form') }}" class="btn btn-primary w-100">Make Payment</a>
                 </div>
+                @endif
                 <div class="col-md-6 col-lg-4">
                     <a href="{{ route('tenant.payment.history') }}" class="btn btn-primary w-100">View Payment History</a>
                 </div>

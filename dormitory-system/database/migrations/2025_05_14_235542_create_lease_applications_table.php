@@ -16,6 +16,9 @@ return new class extends Migration
             $table->foreignId('tenant_id')->constrained()->onDelete('cascade');
             $table->foreignId('room_id')->constrained()->onDelete('cascade');
             $table->integer('lease_term');
+            $table->integer('occupied_bedspace');
+            $table->string('room_type');
+            $table->integer('months_paid')->default(0);
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->timestamps();
         });
